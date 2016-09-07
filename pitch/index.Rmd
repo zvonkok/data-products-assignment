@@ -1,0 +1,83 @@
+---
+title: IMDB Movie Explorer 
+subtitle: Exploratory Analysis of Movie Database
+author: Zvonko Kosic
+output: ioslides_presentation
+mode: selfcontained
+---
+ 
+ 
+## Why? Exploratory Analysis App
+
+- Summarize main characeteristics
+- Seeing what the data can tell us
+- Recognize patterns in advance
+- e.g glampse of how ratings are distributed over genre
+```{r echo=FALSE}
+require("ggplot2")
+require("ggplot2movies")
+library("gridExtra")
+
+mm <- ggplot2movies::movies
+
+mm$Genre <- ifelse(mm$Action == 1,"Action",
+                        ifelse(mm$Animation == 1,"Animation",
+                               ifelse(mm$Comedy == 1,"Comedy",
+                                      ifelse(mm$Drama == 1,"Drama",
+                                             ifelse(mm$Documentary == 1,"Documentary",
+                                                    ifelse(mm$Romance == 1,"Romance",
+                                                           ifelse(mm$Short == 1,"Short","none")))))))
+
+mm <- subset(mm, select=-c(Action,Animation,Comedy,Drama,Documentary,Romance,Short))
+
+mm$length.bin <- cut(mm$length, c(0,100,200,300,400,500,600,6000))
+
+
+p0 <- ggplot(mm,aes(x=Genre,y=rating)) + theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+p0 <- p0 + geom_boxplot(aes(fill=Genre)) + ggtitle("Rating per Genre") + xlab("Genre") + ylab("IMDB Rating")
+
+p1 <- ggplot(mm, aes(x=year, y=rating))
+p1 <- p1 + geom_point(aes(color=Genre,size=budget)) + ggtitle("Rating per Genre") + xlab("Year") + ylab("IMDB Rating")
+```
+```{r echo=FALSE, fig.height=4}
+p0
+```
+
+--- 
+ 
+## What? Exploratory Analysis App
+- Mainly visualizations of various variables
+- Scatter and bar plots
+- Grid of several variables compared to others
+
+```{r echo=FALSE, fig.height=4, fig.width=12}
+grid.arrange(p0, p1,ncol=2)
+```
+
+--- 
+
+## ShinyApp! Exploratory Analysis App
+- IMDB Movies Database Explorer
+- Visualize the potential dependancy between
+  several variables
+- Limit every variable to specific intervalls
+- Grid plot with a lot of dependent variables
+  at once
+
+
+--- 
+
+## Conclusion. Exploratory Analysis App
+- John W. Tukey said that too much emphasis was placed
+on statistical hypothesis testing; more emphasis is/was
+needed on eploratory analysis
+- Before conducting any regression, prediction exploratory
+analysis is the first step
+- This app can help greatly to understand the underlying
+data.
+- Could be expanded to automatically extracts the variables
+and builds the ui on demand
+--- 
+
+ 
+ 
