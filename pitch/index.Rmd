@@ -2,7 +2,8 @@
 title: IMDB Movie Explorer 
 subtitle: Exploratory Analysis of Movie Database
 author: Zvonko Kosic
-output: ioslides_presentation
+#output: ioslides_presentation
+output: github_document
 mode: selfcontained
 ---
  
