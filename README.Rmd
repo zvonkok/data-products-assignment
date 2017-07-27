@@ -1,12 +1,14 @@
 ---
-title: IMDB Movie Explorer 
+title: IMDB Movie Explorer (https://zvonkok.shinyapps.io/data-products-assignment/)
 subtitle: Exploratory Analysis of Movie Database
 author: Zvonko Kosic
 #output: ioslides_presentation
 output: github_document
 mode: selfcontained
 ---
- 
+## Sneak Preview
+
+![](movie.png)
  
 ## Why? Exploratory Analysis App
 

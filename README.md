@@ -1,6 +1,11 @@
-IMDB Movie Explorer
+IMDB Movie Explorer (<https://zvonkok.shinyapps.io/data-products-assignment/>)
 ================
 Zvonko Kosic
+
+Sneak Preview
+-------------
+
+![](movie.png)
 
 Why? Exploratory Analysis App
 -----------------------------
